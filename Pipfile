@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 python-docx = "*"
 django = "*"
+wkhtmltopdf-pack = "0.12.3.0"
 pdfkit = "*"
 htmlbuilder = "*"
 

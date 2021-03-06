@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 from docx import Document
 from docx.shared import Inches, Pt, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-import os
+import os, sys, subprocess, platform
 
 import pdfkit
 from htmlBuilder.tags import *
@@ -244,7 +244,11 @@ def convert_in_pdf(request):
     'no-outline': None
   }
 
-  pdfkit.from_string(html.render(), dirspot + '/converter/static/files/' + timestampStr + '.pdf', options)
+  os.environ['PATH'] += os.pathsep + os.path.dirname(sys.executable) 
+  WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')], 
+    stdout=subprocess.PIPE).communicate()[0].strip()
+  pdfkit_config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+  pdfkit.from_string(html.render(), dirspot + '/converter/static/files/' + timestampStr + '.pdf', options, configuration=pdfkit_config)
 
   url = static('files/' + timestampStr + '.pdf')
 
