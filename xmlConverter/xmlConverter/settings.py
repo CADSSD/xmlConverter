@@ -26,7 +26,7 @@ SECRET_KEY = 'm=jz7c_uqv8-gls+z6r&37fekqdcp1b@&tj6d*mz@)$yb-pjt@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gabrielegarlaschelli.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['gabrielegarlaschelli.com', 'localhost', '127.0.0.1', 'eur1-xml-converter.herokuapp.com']
 
 
 # Application definition
@@ -119,5 +119,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-STATIC_URL = '/xmlConverter/static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
