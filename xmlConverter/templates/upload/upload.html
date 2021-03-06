@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'js/dropzone-5.7.0/dist/min/basic.min.css' %}" rel="stylesheet">
+  <link href="{% static 'js/dropzone-5.7.0/dist/min/dropzone.min.css' %}" rel="stylesheet">
+
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/dropzone-5.7.0/dist/min/dropzone.min.js' %}"></script>
+
+  <form action="/convert_in_pdf/" class="dropzone" id="frmTarget">
+    {% csrf_token %}
+    <div class="fallback">
+      <input name="file" type="file" />
+    </div>
+  </form>
+
+  <div margin-top="10px">
+    <button id="button">Converti</button>
+  </div>
+
+  <script>
+      Dropzone.options.frmTarget = {
+        autoProcessQueue: false,
+        url: '/convert_in_pdf/',
+        init: function () {
+
+          var myDropzone = this;
+
+          // Update selector to match your button
+          $("#button").click(function (e) {
+            e.preventDefault();
+            myDropzone.processQueue();
+          });
+
+          this.on('sending', function (file, xhr, formData) {
+            // Append all form inputs to the formData Dropzone will POST
+            var data = $('#frmTarget').serializeArray();
+            $.each(data, function (key, el) {
+              formData.append(el.name, el.value);
+            });
+          });
+
+          this.on('success', function(file, response) {
+            window.open(response)
+          })
+        }
+      }
+  </script>
+
+  <style>
+  </style>
+</body>
+</html>
