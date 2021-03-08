@@ -169,7 +169,7 @@ def convert_in_pdf(request):
     Head([],
       Title([], timestampStr)
     ),
-    Body([],
+    Body([InlineStyle(font_size="10pt")],
       Div([InlineStyle(width="fit-content", position="absolute", top="70px", left="80px")],
         exporter_ragione_sociale,
         Br([]),
