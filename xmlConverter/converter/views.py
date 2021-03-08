@@ -212,18 +212,18 @@ def convert_in_pdf(request):
       ),
       Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="810px")],
         Div([],
-          [Span([], fattura.text + " ") for fattura in root.findall("./Casella_8_9_10/Casella_10/NumeroFattura")]
+          [Span([], fattura.text + " ") for fattura in root.find('./Casella_8_9_10/Casella_10').findall("./NumeroFattura")]
         )
       ),
-      Div([InlineStyle(position="absolute", bottom="210px", left="230")],
+      Div([InlineStyle(position="absolute", bottom="270px", left="230")],
         "Certificato " + cert_id,
         Br(),
         "Versione 1"
       ),
-      Div([InlineStyle(position="absolute", bottom="130px", left="140")],
+      Div([InlineStyle(position="absolute", bottom="190px", left="140")],
         visto_modello + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + visto_numero
       ),
-      Div([InlineStyle(position="absolute", bottom="95px", left="160")],
+      Div([InlineStyle(position="absolute", bottom="155px", left="160")],
         data2,
         Br([]),
         "28100 UD PARMA"
@@ -231,7 +231,7 @@ def convert_in_pdf(request):
       Div([InlineStyle(position="absolute", bottom="100px", left="680")],
         luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
       ),
-      Div([InlineStyle(position="absolute", bottom="40px", left="120")],
+      Div([InlineStyle(position="absolute", bottom="100px", left="120")],
         luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
       ),
     )
