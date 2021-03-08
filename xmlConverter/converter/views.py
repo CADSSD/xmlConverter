@@ -179,7 +179,7 @@ def convert_in_pdf(request):
         Br([]),
         exporter_country_code
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="145px", left="680px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="163px", left="680px")],
         provenience
       ),
       Div([InlineStyle(width="fit-content", position="absolute", top="200px", left="80px")],
@@ -191,13 +191,13 @@ def convert_in_pdf(request):
         Br([]),
         destinatario_country_code
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="220px", left="680px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="238px", left="680px")],
         arrival
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="330px", left="570px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="348px", left="570px")],
         provenience
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="330px", left="745px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="348px", left="745px")],
         arrival
       ),
       Div([InlineStyle(width="500px", position="absolute", top="715px", left="55px")],
@@ -205,33 +205,37 @@ def convert_in_pdf(request):
           casella_8.find("./Progressivo").text + " " + casella_8.find("./TotaleColli").text + casella_8.find("./CodiceConfezione").text + casella_8.find("./DescrizioneMerce").text
         ) for casella_8 in root.findall("./Casella_8_9_10/Casella_8")]
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="700px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="730px")],
         Div([],
           root.find("./Casella_8_9_10/Casella_9/PesoLordo").text
         )
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="810px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="840px")],
         Div([],
-          [Span([], fattura.text + " ") for fattura in root.find('./Casella_8_9_10/Casella_10').findall("./NumeroFattura")]
+          [
+            Span([], 
+              fattura.text + " ",
+              Br([])
+            ) for fattura in root.find('./Casella_8_9_10/Casella_10').findall("./NumeroFattura")]
         )
       ),
-      Div([InlineStyle(position="absolute", bottom="270px", left="230")],
+      Div([InlineStyle(position="absolute", bottom="232px", left="230")],
         "Certificato " + cert_id,
         Br(),
         "Versione 1"
       ),
-      Div([InlineStyle(position="absolute", bottom="190px", left="140")],
+      Div([InlineStyle(position="absolute", bottom="152px", left="140")],
         visto_modello + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + visto_numero
       ),
-      Div([InlineStyle(position="absolute", bottom="155px", left="160")],
+      Div([InlineStyle(position="absolute", bottom="117px", left="160")],
         data2,
         Br([]),
         "28100 UD PARMA"
       ),
-      Div([InlineStyle(position="absolute", bottom="100px", left="680")],
+      Div([InlineStyle(position="absolute", bottom="81px", left="736")],
         luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
       ),
-      Div([InlineStyle(position="absolute", bottom="100px", left="120")],
+      Div([InlineStyle(position="absolute", bottom="62px", left="120")],
         luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
       ),
     )
