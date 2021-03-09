@@ -7,13 +7,16 @@
   <link href="{% static 'js/dropzone-5.7.0/dist/min/basic.min.css' %}" rel="stylesheet">
   <link href="{% static 'js/dropzone-5.7.0/dist/min/dropzone.min.css' %}" rel="stylesheet">
 
-  <title>Document</title>
+  <title>Conversione EUR1</title>
 </head>
 <body>
   <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/dropzone-5.7.0/dist/min/dropzone.min.js' %}"></script>
 
-  <form action="/convert_in_pdf/" class="dropzone" id="frmTarget">
+  <h1>Conversione per EUR1</h1>
+  <hr/>
+
+  <form action="/convert_eur1_in_pdf/" class="dropzone" id="frmTarget">
     {% csrf_token %}
     <div class="fallback">
       <input name="file" type="file" />
@@ -27,7 +30,7 @@
   <script>
       Dropzone.options.frmTarget = {
         autoProcessQueue: false,
-        url: '/convert_in_pdf/',
+        url: '/convert_eur1_in_pdf/',
         init: function () {
 
           var myDropzone = this;

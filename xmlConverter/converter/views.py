@@ -16,8 +16,11 @@ from htmlBuilder.attributes import Class, Style as InlineStyle
 
 # Create your views here.
 
-def upload(request):
-  return render(request, 'upload/upload.html')
+def upload_eur1(request):
+  return render(request, 'upload/upload_eur1.html')
+
+def upload_atr(request):
+  return render(request, 'upload/upload_atr.html')
 
 def message(request):
   return HttpResponse("Caricamento completato")
@@ -128,7 +131,7 @@ def convert_in_word(request):
 
   # return HttpResponse("Caricamento completato")
 
-def convert_in_pdf(request):
+def convert_eur1_in_pdf(request):
   tree = ET.parse(request.FILES.get('file'))
   root = tree.getroot()
 
@@ -247,7 +250,126 @@ def convert_in_pdf(request):
     )
   )
 
-  print(html.render(pretty=True))
+  options = {
+    'page-size': 'A4',
+    'no-outline': None
+  }
+
+  pdfkit.from_string(html.render(), dirspot + '/converter/static/files/' + timestampStr + '.pdf', options)
+
+  url = static('files/' + timestampStr + '.pdf')
+
+  return HttpResponse(url)
+
+def convert_atr_in_pdf(request):
+  tree = ET.parse(request.FILES.get('file'))
+  root = tree.getroot()
+
+  exporter_ragione_sociale = root.find("./Esportatore_1/RagioneSociale").text
+  exporter_address = root.find("./Esportatore_1/Indirizzo").text
+  exporter_comune = root.find("./Esportatore_1/Comune").text
+  exporter_cap = root.find("./Esportatore_1/CAP").text
+  exporter_country_code = root.find("./Esportatore_1/CodPaese").text
+  exporter_string = exporter_ragione_sociale + "\n" + exporter_address + "\n" + exporter_comune + " " + exporter_cap + "\n" + exporter_country_code
+
+  provenience = root.find("./PaeseEsportazione_5").text
+
+  destinatario_ragione_sociale = root.find("./Destinatario_3/RagioneSociale").text
+  destinatario_address = root.find("./Destinatario_3/Indirizzo").text
+  destinatario_comune = root.find("./Destinatario_3/Comune").text
+  destinatario_cap = root.find("./Destinatario_3/CAP").text
+  destinatario_country_code = root.find("./Destinatario_3/CodPaese").text
+  destinatario_string = destinatario_ragione_sociale + "\n" + destinatario_address + "\n" + destinatario_comune + " " + destinatario_cap + "\n" + destinatario_country_code
+
+  arrival = root.find("./PaeseDestinazione_6").text
+
+  cert_id = root.find("./Cert_ID").text
+  visto_modello = root.find("./VistoDogana_11/Modello").text
+  visto_numero = root.find("./VistoDogana_11/Numero").text
+  luogo = root.find("./VistoDogana_11/Luogo").text
+  data = root.find("./VistoDogana_11/Data").text[0: 10]
+  data2 = root.find("./VistoDogana_11/Del").text[0: 10]
+  data = datetime.strptime(data, "%Y-%m-%d")
+  data = datetime.strftime(data, "%d/%m/%Y")
+  data2 = datetime.strptime(data2, "%Y-%m-%d")
+  data2 = datetime.strftime(data2, "%d/%m/%Y")
+
+  dirspot = os.getcwd()
+  dateTimeObj = datetime.now()
+  timestampStr = dateTimeObj.strftime("%d%b%Y%H%M%S%f")
+
+  html = Html([],
+    Head([],
+      Title([], timestampStr)
+    ),
+    Body([InlineStyle(font_size="10pt")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="70px", left="80px")],
+        exporter_ragione_sociale,
+        Br([]),
+        exporter_address,
+        Br([]),
+        exporter_comune + " " + exporter_cap,
+        Br([]),
+        exporter_country_code
+      ),
+      Div([InlineStyle(width="fit-content", position="absolute", top="163px", left="680px")],
+        provenience
+      ),
+      Div([InlineStyle(width="fit-content", position="absolute", top="200px", left="80px")],
+        destinatario_ragione_sociale,
+        Br([]),
+        destinatario_address,
+        Br([]),
+        destinatario_comune + " " + destinatario_cap,
+        Br([]),
+        destinatario_country_code
+      ),
+      Div([InlineStyle(width="fit-content", position="absolute", top="238px", left="680px")],
+        arrival
+      ),
+      Div([InlineStyle(width="fit-content", position="absolute", top="360px", left="570px")],
+        provenience
+      ),
+      Div([InlineStyle(width="fit-content", position="absolute", top="360px", left="745px")],
+        arrival
+      ),
+      Div([InlineStyle(width="500px", position="absolute", top="715px", left="55px")],
+        [Div([InlineStyle(height="50px")],
+          casella_9_10_11.find("./Casella_9/Progressivo").text + " ",
+          Span([InlineStyle(position="relative", bottom="20px")], casella_9_10_11.find("./NOrdine_10/TotaleColli").text + casella_9_10_11.find("./NOrdine_10/CodiceConfezione").text),
+          Span([InlineStyle(color="white")], casella_9_10_11.find("./NOrdine_10/TotaleColli").text + casella_9_10_11.find("./NOrdine_10/CodiceConfezione").text),
+          casella_9_10_11.find("./NOrdine_10/DescrizioneMerce").text,
+        ) for casella_9_10_11 in root.findall("./Casella_9_10_11")]
+      ),
+      Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="730px")],
+        [Div([InlineStyle(height="50px")],
+          casella_11.find("./PesoLordo").text
+        ) for casella_11 in root.findall("./Casella_8_9_10/Casella_11")]
+      ),
+      Div([InlineStyle(position="absolute", bottom="232px", left="230")],
+        "Certificato " + cert_id,
+        Br(),
+        "Versione 1"
+      ),
+      Div([InlineStyle(position="absolute", bottom="134px", left="158", width="200px")],
+        visto_modello + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + visto_numero
+      ),
+      Div([InlineStyle(position="absolute", bottom="115px", left="178")],
+        data2,
+      ),
+      Div([InlineStyle(position="absolute", bottom="88px", left="178")],
+        Br([]),
+        Br([]),
+        "28100 UD PARMA"
+      ),
+      Div([InlineStyle(position="absolute", bottom="70px", left="736")],
+        luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
+      ),
+      Div([InlineStyle(position="absolute", bottom="29px", left="138")],
+        luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
+      ),
+    )
+  )
 
   options = {
     'page-size': 'A4',
