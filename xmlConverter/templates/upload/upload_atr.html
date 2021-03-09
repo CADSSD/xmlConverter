@@ -13,8 +13,13 @@
   <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/dropzone-5.7.0/dist/min/dropzone.min.js' %}"></script>
 
-  <h1>Conversione per ATR</h1>
-  <hr/>
+  <div>
+    <h1 style="width: fit-content; float: left; margin: 10px;">Conversione per ATR</h1>
+    <div style="float: right;">
+      <a href="{% url 'upload_eur1' %}" class="link" data-hover="Conversione EUR1">Conversione EUR1</a>
+    </div>
+  </div>
+  <hr style="width: 100%;"/>
 
   <form action="/convert_atr_in_pdf/" class="dropzone" id="frmTarget">
     {% csrf_token %}
@@ -24,7 +29,7 @@
   </form>
 
   <div margin-top="10px">
-    <button id="button">Converti</button>
+    <button id="button" class="button">Converti</button>
   </div>
 
   <script>
@@ -57,6 +62,53 @@
   </script>
 
   <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .button {
+      display: inline-block;
+      padding:0.7em 1.4em;
+      margin:0 0.3em 0.3em 0;
+      border-radius: 10px;
+      box-sizing: border-box;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: white;
+      background-color: #145756;
+      box-shadow: inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17);
+      cursor: pointer;
+    }
+
+    .button:hover{
+      background-color: #104948;
+    }
+
+    .button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .link {
+      position: relative;
+      display: inline-block;
+      margin: 15px 25px;
+      outline: none;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 10pt;
+      height: 2em;
+      line-height: 2em;
+      padding: 0 10px;
+      border: 1px solid #145756;
+      border-radius: 5px;
+      /* border-left: 3px solid #AF730A; */
+      color: #145756;
+      overflow: hidden;
+    }
+
   </style>
 </body>
 </html>
