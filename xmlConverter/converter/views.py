@@ -191,13 +191,13 @@ def convert_in_pdf(request):
         Br([]),
         destinatario_country_code
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="256px", left="680px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="238px", left="680px")],
         arrival
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="356px", left="570px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="360px", left="570px")],
         provenience
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="348px", left="745px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="360px", left="745px")],
         arrival
       ),
       Div([InlineStyle(width="500px", position="absolute", top="677px", left="55px")],
