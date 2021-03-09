@@ -213,7 +213,7 @@ def convert_in_pdf(request):
           casella_9.find("./PesoLordo").text
         ) for casella_9 in root.findall("./Casella_8_9_10/Casella_9")]
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="840px")],
+      Div([InlineStyle(width="83px", position="absolute", top="715px", left="840px")],
         [Div([InlineStyle(height="50px")],
           [
             Span([], 
