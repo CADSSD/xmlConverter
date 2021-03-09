@@ -214,7 +214,7 @@ def convert_in_pdf(request):
         ) for casella_9 in root.findall("./Casella_8_9_10/Casella_9")]
       ),
       Div([InlineStyle(width="83px", position="absolute", top="715px", left="840px")],
-        [Div([InlineStyle(height="50px")],
+        [Div([InlineStyle(height="50px", word_break="break-all")],
           [
             Span([], 
               fattura.text + " ",
