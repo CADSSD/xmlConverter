@@ -201,33 +201,33 @@ def convert_in_pdf(request):
         arrival
       ),
       Div([InlineStyle(width="500px", position="absolute", top="715px", left="55px")],
-        [Div([],
+        [Div([InlineStyle(height="50px")],
           casella_8.find("./Progressivo").text + " ",
+          Span([InlineStyle(position="relative", bottom="20px")], casella_8.find("./TotaleColli").text + casella_8.find("./CodiceConfezione").text),
           Span([InlineStyle(color="white")], casella_8.find("./TotaleColli").text + casella_8.find("./CodiceConfezione").text),
           casella_8.find("./DescrizioneMerce").text,
-          Span([InlineStyle(position="relative", bottom="50px", left="-50px")], casella_8.find("./TotaleColli").text + casella_8.find("./CodiceConfezione").text)
         ) for casella_8 in root.findall("./Casella_8_9_10/Casella_8")]
       ),
       Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="730px")],
-        Div([],
-          root.find("./Casella_8_9_10/Casella_9/PesoLordo").text
-        )
+        [Div([InlineStyle(height="50px")],
+          casella_9.find("./PesoLordo").text
+        ) for casella_9 in root.findall("./Casella_8_9_10/Casella_9")]
       ),
       Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="840px")],
-        Div([],
+        [Div([InlineStyle(height="50px")],
           [
             Span([], 
               fattura.text + " ",
               Br([])
-            ) for fattura in root.find('./Casella_8_9_10/Casella_10').findall("./NumeroFattura")]
-        )
+            ) for fattura in casella_8_9_10.find('./Casella_10').findall("./NumeroFattura")]
+        ) for casella_8_9_10 in root.findall('./Casella_8_9_10') ]
       ),
       Div([InlineStyle(position="absolute", bottom="232px", left="230")],
         "Certificato " + cert_id,
         Br(),
         "Versione 1"
       ),
-      Div([InlineStyle(position="absolute", bottom="134px", left="158")],
+      Div([InlineStyle(position="absolute", bottom="134px", left="158", width="200px")],
         visto_modello + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + visto_numero
       ),
       Div([InlineStyle(position="absolute", bottom="115px", left="178")],
