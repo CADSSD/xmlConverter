@@ -191,16 +191,16 @@ def convert_in_pdf(request):
         Br([]),
         destinatario_country_code
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="238px", left="680px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="256px", left="680px")],
         arrival
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="348px", left="570px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="356px", left="570px")],
         provenience
       ),
       Div([InlineStyle(width="fit-content", position="absolute", top="348px", left="745px")],
         arrival
       ),
-      Div([InlineStyle(width="500px", position="absolute", top="715px", left="55px")],
+      Div([InlineStyle(width="500px", position="absolute", top="677px", left="55px")],
         [Div([],
           casella_8.find("./Progressivo").text + " " + casella_8.find("./TotaleColli").text + casella_8.find("./CodiceConfezione").text + casella_8.find("./DescrizioneMerce").text
         ) for casella_8 in root.findall("./Casella_8_9_10/Casella_8")]
@@ -224,10 +224,10 @@ def convert_in_pdf(request):
         Br(),
         "Versione 1"
       ),
-      Div([InlineStyle(position="absolute", bottom="152px", left="140")],
+      Div([InlineStyle(position="absolute", bottom="134px", left="158")],
         visto_modello + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + visto_numero
       ),
-      Div([InlineStyle(position="absolute", bottom="117px", left="160")],
+      Div([InlineStyle(position="absolute", bottom="99px", left="178")],
         data2,
         Br([]),
         "28100 UD PARMA"
@@ -235,7 +235,7 @@ def convert_in_pdf(request):
       Div([InlineStyle(position="absolute", bottom="81px", left="736")],
         luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
       ),
-      Div([InlineStyle(position="absolute", bottom="62px", left="120")],
+      Div([InlineStyle(position="absolute", bottom="44px", left="138")],
         luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
       ),
     )
