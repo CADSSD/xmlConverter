@@ -12,11 +12,15 @@
 <body>
   <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/dropzone-5.7.0/dist/min/dropzone.min.js' %}"></script>
+  <script src="https://kit.fontawesome.com/b587b6f0cb.js" crossorigin="anonymous"></script>
 
   <div>
     <h1 style="width: fit-content; float: left; margin: 10px;">Conversione per ATR</h1>
     <div style="float: right;">
       <a href="{% url 'upload_eur1' %}" class="link" data-hover="Conversione EUR1">Conversione EUR1</a>
+      <a class="link dark-mode-button" style="cursor: pointer;">
+        <i class="fas fa-moon" style="margin-top: 7px;"></i>
+      </a>
     </div>
   </div>
   <hr style="width: 100%;"/>
@@ -59,6 +63,14 @@
           })
         }
       }
+
+      $(function () {
+        $('.dark-mode-button').on('click', function () {
+          var element = document.body;
+          element.classList.toggle("dark-mode");
+          $('.dropzone').toggleClass('dropzone-dark')
+        })
+      })
   </script>
 
   <style>
@@ -93,7 +105,7 @@
     .link {
       position: relative;
       display: inline-block;
-      margin: 15px 25px;
+      margin: 5px;
       outline: none;
       text-decoration: none;
       text-transform: uppercase;
@@ -107,6 +119,17 @@
       /* border-left: 3px solid #AF730A; */
       color: #145756;
       overflow: hidden;
+    }
+
+    .dark-mode {
+      background-color: black;
+      color: white;
+    }
+
+    .dropzone-dark {
+      background-color: black !important;
+      color: white !important;
+      border: 2px solid white;
     }
 
   </style>
