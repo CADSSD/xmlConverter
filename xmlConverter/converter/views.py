@@ -200,9 +200,11 @@ def convert_in_pdf(request):
       Div([InlineStyle(width="fit-content", position="absolute", top="360px", left="745px")],
         arrival
       ),
-      Div([InlineStyle(width="500px", position="absolute", top="677px", left="55px")],
+      Div([InlineStyle(width="500px", position="absolute", top="715px", left="55px")],
         [Div([],
-          casella_8.find("./Progressivo").text + " " + casella_8.find("./TotaleColli").text + casella_8.find("./CodiceConfezione").text + casella_8.find("./DescrizioneMerce").text
+          casella_8.find("./Progressivo").text + " ",
+          Span([InlineStyle(margin_bottom="50px")], casella_8.find("./TotaleColli").text + casella_8.find("./CodiceConfezione").text),
+          casella_8.find("./DescrizioneMerce").text
         ) for casella_8 in root.findall("./Casella_8_9_10/Casella_8")]
       ),
       Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="730px")],
