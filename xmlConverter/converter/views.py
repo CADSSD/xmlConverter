@@ -229,13 +229,16 @@ def convert_in_pdf(request):
       ),
       Div([InlineStyle(position="absolute", bottom="99px", left="178")],
         data2,
+      ),
+      Div([InlineStyle(position="absolute", bottom="88px", left="178")],
+        Br([]),
         Br([]),
         "28100 UD PARMA"
       ),
-      Div([InlineStyle(position="absolute", bottom="81px", left="736")],
-        luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
+      Div([InlineStyle(position="absolute", bottom="70px", left="736")],
+        luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
       ),
-      Div([InlineStyle(position="absolute", bottom="44px", left="138")],
+      Div([InlineStyle(position="absolute", bottom="29px", left="138")],
         luogo + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + data
       ),
     )
