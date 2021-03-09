@@ -303,7 +303,7 @@ def convert_atr_in_pdf(request):
       Title([], timestampStr)
     ),
     Body([InlineStyle(font_size="10pt")],
-      Div([InlineStyle(width="fit-content", position="absolute", top="70px", left="80px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="110px", left="80px")],
         exporter_ragione_sociale,
         Br([]),
         exporter_address,
@@ -312,10 +312,7 @@ def convert_atr_in_pdf(request):
         Br([]),
         exporter_country_code
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="163px", left="680px")],
-        provenience
-      ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="200px", left="80px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="240px", left="80px")],
         destinatario_ragione_sociale,
         Br([]),
         destinatario_address,
@@ -324,13 +321,10 @@ def convert_atr_in_pdf(request):
         Br([]),
         destinatario_country_code
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="238px", left="680px")],
-        arrival
-      ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="360px", left="570px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="360px", left="607px")],
         provenience
       ),
-      Div([InlineStyle(width="fit-content", position="absolute", top="360px", left="745px")],
+      Div([InlineStyle(width="fit-content", position="absolute", top="360px", left="782px")],
         arrival
       ),
       Div([InlineStyle(width="500px", position="absolute", top="715px", left="55px")],
@@ -343,21 +337,18 @@ def convert_atr_in_pdf(request):
       ),
       Div([InlineStyle(width="fit-content", position="absolute", top="715px", left="730px")],
         [Div([InlineStyle(height="50px")],
-          casella_11.find("./PesoLordo").text
-        ) for casella_11 in root.findall("./Casella_8_9_10/Casella_11")]
+          casella_9_10_11.find("./Casella_11/PesoLordo").text
+        ) for casella_9_10_11 in root.findall("./Casella_9_10_11")]
       ),
       Div([InlineStyle(position="absolute", bottom="232px", left="230")],
         "Certificato " + cert_id,
         Br(),
         "Versione 1"
       ),
-      Div([InlineStyle(position="absolute", bottom="134px", left="158", width="200px")],
+      Div([InlineStyle(position="absolute", bottom="134px", left="233px", width="200px")],
         visto_modello + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + visto_numero
       ),
-      Div([InlineStyle(position="absolute", bottom="115px", left="178")],
-        data2,
-      ),
-      Div([InlineStyle(position="absolute", bottom="88px", left="178")],
+      Div([InlineStyle(position="absolute", bottom="103px", left="178")],
         Br([]),
         Br([]),
         "28100 UD PARMA"

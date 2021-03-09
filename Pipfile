@@ -9,6 +9,7 @@ django = "*"
 wkhtmltopdf-pack-ng = "0.12.3.0"
 pdfkit = "*"
 htmlbuilder = "*"
+django-crontab = "*"
 
 [dev-packages]
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'converter.apps.ConverterConfig',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -101,6 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CRONJOBS = [
+    ('* * * * *', 'converter.cron.clean_file_directory')
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
