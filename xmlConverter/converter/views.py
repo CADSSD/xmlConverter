@@ -227,7 +227,7 @@ def convert_in_pdf(request):
       Div([InlineStyle(position="absolute", bottom="134px", left="158")],
         visto_modello + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + visto_numero
       ),
-      Div([InlineStyle(position="absolute", bottom="105px", left="178")],
+      Div([InlineStyle(position="absolute", bottom="110px", left="178")],
         data2,
       ),
       Div([InlineStyle(position="absolute", bottom="88px", left="178")],
