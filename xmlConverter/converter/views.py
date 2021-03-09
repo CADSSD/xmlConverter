@@ -201,7 +201,7 @@ def convert_in_pdf(request):
         arrival
       ),
       Div([InlineStyle(width="500px", position="absolute", top="715px", left="55px")],
-        [Div([],
+        [Div([InlineStyle(line_height="70px")],
           casella_8.find("./Progressivo").text + " ",
           Span([InlineStyle(margin_bottom="50px")], casella_8.find("./TotaleColli").text + casella_8.find("./CodiceConfezione").text),
           casella_8.find("./DescrizioneMerce").text
